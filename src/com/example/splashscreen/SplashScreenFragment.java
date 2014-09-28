@@ -11,6 +11,7 @@ public class SplashScreenFragment extends Fragment {
 	private final Handler handler = new Handler();
 	private boolean rolled = false;
 	private HomeScreenFragment homeScreen;
+	private int id = 42;
 	
 	  @Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,7 +56,7 @@ public class SplashScreenFragment extends Fragment {
 	  private void changeFragment() {
 		  homeScreen = new HomeScreenFragment();
 		  try {
-		  getFragmentManager().beginTransaction().replace(R.id.fragmentContainer, homeScreen).commit();
+		  getFragmentManager().beginTransaction().replace(id, homeScreen).commit();
 		  }
 		  catch (Exception e) {
 			  e.printStackTrace();
