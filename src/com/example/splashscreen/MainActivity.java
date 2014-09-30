@@ -5,9 +5,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 
+
+     // format all
+// do with activity, use saveInstanceState
+
 public class MainActivity extends Activity {
 
-	SplashScreenFragment splashScreen;
+	SplashScreenFragment splashScreen;                    // need identifs
 	  private FrameLayout container;
 	  private int id;
 	
@@ -15,8 +19,8 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-	    container = new FrameLayout(this);	    
-	    id = 42;
+	    container = new FrameLayout(this);	    // create xml
+	    id = 42;                                    // save constants
 	    container.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT));
 	    container.setId(id);
 	    setContentView(container);

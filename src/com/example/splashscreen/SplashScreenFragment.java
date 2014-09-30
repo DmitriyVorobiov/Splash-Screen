@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 public class SplashScreenFragment extends Fragment {
 
 	private final Handler handler = new Handler();
-	private boolean rolled = false;
+	private boolean rolled = false;                       // bad name, dont use it
 	private HomeScreenFragment homeScreen;
 	private int id = 42;
 	
 	  @Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	      Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.splash_screen, null);
+	    return inflater.inflate(R.layout.splash_screen, null);        // correct warnings
 	  }
 	  
 	  public void onCreate(Bundle savedInstanceState) {
@@ -40,9 +40,9 @@ public class SplashScreenFragment extends Fragment {
 		    rolled = false;
 		  }
 	  
-	  public void onStop() {
+	  public void onStop() {                                   // dont use those cicles
 		    super.onStop();
-		    if (!getActivity().hasWindowFocus()) {
+		    if (!getActivity().hasWindowFocus()) {            // dont use it
 	    		rolled = true;
 	    	}
 		  }
@@ -58,8 +58,8 @@ public class SplashScreenFragment extends Fragment {
 		  try {
 		  getFragmentManager().beginTransaction().replace(id, homeScreen).commit();
 		  }
-		  catch (Exception e) {
-			  e.printStackTrace();
+		  catch (Exception e) {                  // nulls are not allowed
+			  e.printStackTrace();             // do something
 		  }
 	  }
 }

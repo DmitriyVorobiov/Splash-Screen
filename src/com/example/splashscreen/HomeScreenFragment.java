@@ -12,7 +12,7 @@ public class HomeScreenFragment extends Fragment {
 	  @Override
 	  public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	      Bundle savedInstanceState) {
-	    return inflater.inflate(R.layout.home_screen, null);
+	    return inflater.inflate(R.layout.home_screen, null);     //  warning
 
 	  }
 	  
