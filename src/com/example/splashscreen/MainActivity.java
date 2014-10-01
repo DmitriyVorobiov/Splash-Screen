@@ -11,7 +11,7 @@ public class MainActivity extends Activity {
 	private final String LOG_TAG = MainActivity.class.getName();
 	private final Handler handler = new Handler();
 	private final long SPLASH_TIME = 4000;
-	private String ELAPSED_TIME = "elapsedTime";
+	private final String ELAPSED_TIME = "elapsedTime";
 	private long pastTime;
 	private long startTime;
 
