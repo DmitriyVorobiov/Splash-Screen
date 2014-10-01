@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 
 	static String TAG = "mylog";
 	private final Handler handler = new Handler();
-	private final long SPLASH_TIME = 6000;
+	private final long SPLASH_TIME = 4000;
 	private String ELAPSED_TIME = "elapsedTime";
 	private long pastTime;
 	private long startTime;
@@ -47,10 +47,9 @@ public class MainActivity extends Activity {
 	};
 
 	private void changeActivity() {
-		handler.removeCallbacks(confirmChange);
+		//handler.removeCallbacks(confirmChange);
 		Intent intent = new Intent(this, HomeScreenActivity.class);
 		startActivity(intent);
-		//finish();
 	}
 
 	protected void onSaveInstanceState(Bundle outState) {
@@ -60,27 +59,10 @@ public class MainActivity extends Activity {
 
 	}
 
-
 	@Override
 	protected void onDestroy() {
 		handler.removeCallbacks(confirmChange);
 		super.onDestroy();
 	}
-
-//	@Override
-//	protected void onStop() {
-//		super.onStop();
-//		if (!isChangingConfigurations()) {
-//			isChangingOrientation = false;
-//		}
-//	}
-
-//	@Override
-//	protected void onResume() {
-//		super.onResume();
-//		if (isChangingOrientation) {
-//			handler.postDelayed(confirmChange, 0);
-//		}
-//	}
 
 }
