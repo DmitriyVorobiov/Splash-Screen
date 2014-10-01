@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
-// format all
-// do with activity, use saveInstanceState
-
 public class MainActivity extends Activity {
 
-	static String TAG = "mylog";
+	private final String LOG_TAG = MainActivity.class.getName();
 	private final Handler handler = new Handler();
 	private final long SPLASH_TIME = 4000;
 	private String ELAPSED_TIME = "elapsedTime";
@@ -22,24 +19,21 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_screen);
-		Log.d(TAG, "MainActivity: onCreate()");
-
 		startTime = System.currentTimeMillis();
 		if (savedInstanceState == null) {
 			pastTime = 0;
-			handler.postDelayed(confirmChange, SPLASH_TIME);
+			handler.postDelayed(changeRunnable, SPLASH_TIME);
 
 		} else {
 			pastTime = savedInstanceState.getLong(ELAPSED_TIME);
-			Log.d(TAG, String.valueOf(pastTime));
 			if (pastTime < SPLASH_TIME) {
-				handler.postDelayed(confirmChange, SPLASH_TIME - pastTime);
+				handler.postDelayed(changeRunnable, SPLASH_TIME - pastTime);
 			} else
-				handler.post(confirmChange);
+				handler.post(changeRunnable);
 		}
 	}
 
-	Runnable confirmChange = new Runnable() {
+	Runnable changeRunnable = new Runnable() {
 		@Override
 		public void run() {
 			changeActivity();
@@ -47,7 +41,6 @@ public class MainActivity extends Activity {
 	};
 
 	private void changeActivity() {
-		//handler.removeCallbacks(confirmChange);
 		Intent intent = new Intent(this, HomeScreenActivity.class);
 		startActivity(intent);
 	}
@@ -59,10 +52,22 @@ public class MainActivity extends Activity {
 
 	}
 
+	// used android:noHistory="true" to disable splash screen
 	@Override
 	protected void onDestroy() {
-		handler.removeCallbacks(confirmChange);
+		handler.removeCallbacks(changeRunnable);
 		super.onDestroy();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (!isChangingConfigurations()) {
+			Log.d(LOG_TAG, "application is hidden");
+			// remove callback to disable HomeScreen appearance, if application
+			// is hidden
+			handler.removeCallbacks(changeRunnable);
+		}
 	}
 
 }

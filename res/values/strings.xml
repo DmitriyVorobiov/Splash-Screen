@@ -5,6 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="splash">Splash Screen</string>
     <string name="home">Home Screen</string>
+    <string name="description">image</string>
     <string-array name="items">
         <item>Item1</item>
         <item>Item2</item>
